@@ -66,11 +66,13 @@ public class WheelRaycast : MonoBehaviour
             springForce = springStiffness * (restLength - springLength);
             damperForce = damperStiffness * springVelocity;
 
-            suspensionForce = (springForce + damperForce) * transform.up;
+            suspensionForce = (springForce + damperForce) * hit.normal;
+
             localmove =transform.InverseTransformDirection(rb.GetPointVelocity(hit.point));
             fx=Input.GetAxis("Vertical")*springForce;
             fy = localmove.x * springForce;
-            rb.AddForceAtPosition(suspensionForce+(fx*transform.forward)+(fy*-transform.right), hit.point);
+            rb.AddForceAtPosition(suspensionForce+(fx * Vector3.ProjectOnPlane(transform.forward, hit.normal).normalized
+                )+(fy*-transform.right), hit.point);
             
         }
         
