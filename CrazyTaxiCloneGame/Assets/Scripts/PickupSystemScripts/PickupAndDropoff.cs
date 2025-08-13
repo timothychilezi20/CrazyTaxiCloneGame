@@ -44,11 +44,11 @@ public class PickupAndDropoff : MonoBehaviour
     {
         if (!hasPassenger && activePickupZoneData.pickupZone == other.gameObject)
         {
-            PickupPassenger();
+            StartCoroutine(PickupPassenger());
         }
         else if (hasPassenger && activeDropoffZone == other.gameObject)
         {
-            DropoffPassenger();
+            StartCoroutine(DropoffPassenger());
         }
     }
 
@@ -80,8 +80,9 @@ public class PickupAndDropoff : MonoBehaviour
         activeDropoffZone.SetActive(true);
     }
 
-    void PickupPassenger()
+    IEnumerator PickupPassenger()
     {
+        yield return new WaitForSeconds(5f); 
         activePickupZoneData.passengerModel.SetActive(false);
 
         currentPassenger = Instantiate(passengerPrefab, passengerHoldPoint.position, passengerHoldPoint.rotation);
@@ -93,8 +94,9 @@ public class PickupAndDropoff : MonoBehaviour
         ActivateRandomDropoffZone();
     }
 
-    void DropoffPassenger()
+    IEnumerator DropoffPassenger()
     {
+        yield return new WaitForSeconds(5f);
         Vector3 dropPos = activeDropoffZone.transform.position;
         Quaternion dropRot = Quaternion.identity; 
 
