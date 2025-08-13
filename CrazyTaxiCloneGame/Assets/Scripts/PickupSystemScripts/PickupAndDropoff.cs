@@ -8,20 +8,21 @@ public class PickupAndDropoff : MonoBehaviour
     public class PickupZoneData
     {
         public GameObject pickupZone;
-        public GameObject passengerModel;  
+        public GameObject passengerModel;
     }
 
     public List<PickupZoneData> pickupZonesData;
     public List<GameObject> dropoffZones;
     public Transform passengerHoldPoint;
 
-    public GameObject passengerPrefab;  
+    public GameObject passengerPrefab;
 
     private GameObject currentPassenger;
     private PickupZoneData activePickupZoneData;
     private GameObject activeDropoffZone;
     private bool hasPassenger = false;
 
+    private int currentPickupIndex = 0;
 
     private void Start()
     {
@@ -35,7 +36,8 @@ public class PickupAndDropoff : MonoBehaviour
             dropoff.SetActive(false);
         }
 
-        ActivateRandomPickupZone();
+        currentPickupIndex = 0;
+        ActivateNextPickupZone();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,7 +52,7 @@ public class PickupAndDropoff : MonoBehaviour
         }
     }
 
-    void ActivateRandomPickupZone()
+    void ActivateNextPickupZone()
     {
         if (pickupZonesData.Count == 0) return;
 
@@ -60,7 +62,12 @@ public class PickupAndDropoff : MonoBehaviour
             activePickupZoneData.passengerModel.SetActive(false);
         }
 
-        activePickupZoneData = pickupZonesData[Random.Range(0, pickupZonesData.Count)];
+        if (currentPickupIndex >= pickupZonesData.Count)
+        {
+            currentPickupIndex = 0; 
+        }
+
+        activePickupZoneData = pickupZonesData[currentPickupIndex];
         activePickupZoneData.pickupZone.SetActive(true);
         activePickupZoneData.passengerModel.SetActive(true);
     }
@@ -89,7 +96,7 @@ public class PickupAndDropoff : MonoBehaviour
     void DropoffPassenger()
     {
         Vector3 dropPos = activeDropoffZone.transform.position;
-        Quaternion dropRot = Quaternion.identity; // Or activeDropoffZone.transform.rotation
+        Quaternion dropRot = Quaternion.identity; 
 
         GameObject dropoffPassenger = Instantiate(passengerPrefab, dropPos, dropRot);
 
@@ -98,8 +105,7 @@ public class PickupAndDropoff : MonoBehaviour
 
         activeDropoffZone.SetActive(false);
 
-        ActivateRandomPickupZone();
+        currentPickupIndex++;    
+        ActivateNextPickupZone();
     }
-
 }
-
