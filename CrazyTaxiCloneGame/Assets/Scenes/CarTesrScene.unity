@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 208070622}
   serializedVersion: 2
   m_LocalRotation: {x: 0.20809366, y: -0, z: -0, w: 0.97810894}
-  m_LocalPosition: {x: -0.1822989, y: 8.42, z: -15.434401}
+  m_LocalPosition: {x: -0.1822989, y: 8.42, z: -15.434402}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -720,6 +720,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {fileID: 302565629}
+--- !u!54 &2019019097 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 9043496588402066465, guid: 8d79bd0da442a254f8fce4072f49798a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5768890846569317197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2053557109
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +920,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2018736022989810236, guid: 8d79bd0da442a254f8fce4072f49798a,
+        type: 3}
+      propertyPath: carBody
+      value: 
+      objectReference: {fileID: 2019019097}
     - target: {fileID: 3654002581282254028, guid: 8d79bd0da442a254f8fce4072f49798a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -972,12 +983,17 @@ PrefabInstance:
     - target: {fileID: 8829370389296395167, guid: 8d79bd0da442a254f8fce4072f49798a,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.4918666
+      value: 0.95160866
       objectReference: {fileID: 0}
     - target: {fileID: 8829370389296395167, guid: 8d79bd0da442a254f8fce4072f49798a,
         type: 3}
       propertyPath: m_Size.z
-      value: 3.7909026
+      value: 3.696013
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829370389296395167, guid: 8d79bd0da442a254f8fce4072f49798a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8829370389296395167, guid: 8d79bd0da442a254f8fce4072f49798a,
         type: 3}
@@ -987,12 +1003,12 @@ PrefabInstance:
     - target: {fileID: 8829370389296395167, guid: 8d79bd0da442a254f8fce4072f49798a,
         type: 3}
       propertyPath: m_Center.y
-      value: 1.0033162
+      value: 0.7075634
       objectReference: {fileID: 0}
     - target: {fileID: 8829370389296395167, guid: 8d79bd0da442a254f8fce4072f49798a,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.16103977
+      value: -0.18693066
       objectReference: {fileID: 0}
     - target: {fileID: 8876743854123800902, guid: 8d79bd0da442a254f8fce4072f49798a,
         type: 3}
@@ -1077,8 +1093,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 236583872}
-  - {fileID: 208070625}
   - {fileID: 2053557113}
+  - {fileID: 208070625}
   - {fileID: 5372031792051605493}
   - {fileID: 9078511377750887258}
   - {fileID: 5768890846569317197}

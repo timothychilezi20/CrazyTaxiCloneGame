@@ -35,6 +35,11 @@ public class WheelRaycast : MonoBehaviour
     public float steerangle;
     private float wheelangle;
     [SerializeField] private float turnspeed;
+    [HideInInspector] public Vector3 avgNormal; 
+    [HideInInspector] public bool isGrounded;  
+    [HideInInspector] public Vector3 lastHitNormal; 
+
+
     
     
     [Header ("Move Forward Shit")]
@@ -58,6 +63,9 @@ public class WheelRaycast : MonoBehaviour
 
     void FixedUpdate() {
         if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, maxLength + wheelRadius)) {
+            isGrounded = true;
+            lastHitNormal = hit.normal; 
+            
             lastLength = springLength;
 
             springLength = hit.distance - wheelRadius;
@@ -66,7 +74,7 @@ public class WheelRaycast : MonoBehaviour
             springForce = springStiffness * (restLength - springLength);
             damperForce = damperStiffness * springVelocity;
 
-            suspensionForce = (springForce + damperForce) * hit.normal;
+            suspensionForce = (springForce + damperForce) * avgNormal;
 
             localmove =transform.InverseTransformDirection(rb.GetPointVelocity(hit.point));
             fx=Input.GetAxis("Vertical")*springForce;
@@ -75,7 +83,12 @@ public class WheelRaycast : MonoBehaviour
                 )+(fy*-transform.right), hit.point);
             
         }
-        
+        else
+        {
+            isGrounded = false;
+            lastHitNormal = transform.up; 
+        }
+
     }
 }
 
