@@ -2,33 +2,41 @@ using UnityEngine;
 
 public class Passenger : MonoBehaviour
 {
-    public float moveSpeed = 2f;
-    public float health;
-    public float maxHealth = 3f;
+    public float moveSpeed = 3f;
+    public float stoppingDistance = 1.5f;
 
-    private Rigidbody rb;
     private Transform target;
-    private Vector3 moveDirection;
+    private bool isFollowing = false;
+    private PickupAndDropoff controller;
 
-    private void Awake()
+    public void StartFollowing(Transform followTarget)
     {
-        rb = GetComponent<Rigidbody>();
+        target = followTarget;
+        isFollowing = true;
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void StopFollowing()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        isFollowing = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (target)
+        if (!isFollowing || target == null) return;
+
+        float distance = Vector3.Distance(transform.position, target.position);
+
+        if (distance > stoppingDistance)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
-            moveDirection = direction;
+            Vector3 dir = (target.position - transform.position).normalized;
+            transform.position += dir * moveSpeed * Time.deltaTime;
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+        }
+        else
+        {
+            isFollowing = false;
+            controller = Object.FindFirstObjectByType<PickupAndDropoff>();
+            controller.AttachPassenger();
         }
     }
 }

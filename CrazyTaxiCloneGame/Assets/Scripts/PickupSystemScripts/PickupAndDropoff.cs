@@ -8,13 +8,12 @@ public class PickupAndDropoff : MonoBehaviour
     public class PickupZoneData
     {
         public GameObject pickupZone;
-        public GameObject passengerModel;
+        public Passenger passengerScript; // Walking passenger
     }
 
     public List<PickupZoneData> pickupZonesData;
     public List<GameObject> dropoffZones;
     public Transform passengerHoldPoint;
-
     public GameObject passengerPrefab;
 
     private GameObject currentPassenger;
@@ -29,26 +28,38 @@ public class PickupAndDropoff : MonoBehaviour
         foreach (var data in pickupZonesData)
         {
             data.pickupZone.SetActive(false);
-            data.passengerModel.SetActive(false);
+            if (data.passengerScript != null)
+                data.passengerScript.gameObject.SetActive(false);
         }
+
         foreach (var dropoff in dropoffZones)
         {
             dropoff.SetActive(false);
         }
 
-        currentPickupIndex = 0;
         ActivateNextPickupZone();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        // Taxi enters pickup zone
         if (!hasPassenger && activePickupZoneData.pickupZone == other.gameObject)
         {
-            StartCoroutine(PickupPassenger());
+            activePickupZoneData.passengerScript.StartFollowing(passengerHoldPoint); // start moving
         }
+        // Taxi enters dropoff zone
         else if (hasPassenger && activeDropoffZone == other.gameObject)
         {
             StartCoroutine(DropoffPassenger());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Taxi leaves pickup zone before passenger reaches it
+        if (!hasPassenger && activePickupZoneData.pickupZone == other.gameObject)
+        {
+            activePickupZoneData.passengerScript.StopFollowing(); // stop moving
         }
     }
 
@@ -56,20 +67,21 @@ public class PickupAndDropoff : MonoBehaviour
     {
         if (pickupZonesData.Count == 0) return;
 
+        // Disable previous pickup
         if (activePickupZoneData != null)
         {
             activePickupZoneData.pickupZone.SetActive(false);
-            activePickupZoneData.passengerModel.SetActive(false);
+            if (activePickupZoneData.passengerScript != null)
+                activePickupZoneData.passengerScript.gameObject.SetActive(false);
         }
 
         if (currentPickupIndex >= pickupZonesData.Count)
-        {
-            currentPickupIndex = 0; 
-        }
+            currentPickupIndex = 0;
 
         activePickupZoneData = pickupZonesData[currentPickupIndex];
         activePickupZoneData.pickupZone.SetActive(true);
-        activePickupZoneData.passengerModel.SetActive(true);
+        if (activePickupZoneData.passengerScript != null)
+            activePickupZoneData.passengerScript.gameObject.SetActive(true);
     }
 
     void ActivateRandomDropoffZone()
@@ -80,34 +92,29 @@ public class PickupAndDropoff : MonoBehaviour
         activeDropoffZone.SetActive(true);
     }
 
-    IEnumerator PickupPassenger()
+    public void AttachPassenger()
     {
-        yield return new WaitForSeconds(5f); 
-        activePickupZoneData.passengerModel.SetActive(false);
-
+        activePickupZoneData.passengerScript.gameObject.SetActive(false);
         currentPassenger = Instantiate(passengerPrefab, passengerHoldPoint.position, passengerHoldPoint.rotation);
         currentPassenger.transform.SetParent(passengerHoldPoint);
 
         hasPassenger = true;
-
         activePickupZoneData.pickupZone.SetActive(false);
         ActivateRandomDropoffZone();
     }
 
     IEnumerator DropoffPassenger()
     {
-        yield return new WaitForSeconds(5f);
-        Vector3 dropPos = activeDropoffZone.transform.position;
-        Quaternion dropRot = Quaternion.identity; 
+        yield return new WaitForSeconds(2f);
 
-        GameObject dropoffPassenger = Instantiate(passengerPrefab, dropPos, dropRot);
+        Instantiate(passengerPrefab, activeDropoffZone.transform.position, Quaternion.identity);
 
         Destroy(currentPassenger);
         hasPassenger = false;
 
         activeDropoffZone.SetActive(false);
 
-        currentPickupIndex++;    
+        currentPickupIndex++;
         ActivateNextPickupZone();
     }
 }
