@@ -37,7 +37,7 @@ public class MoneyManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("XPUIManager Instance not found.");
+            Debug.Log("XPUIManager Instance not found.");
         }
     }
 
