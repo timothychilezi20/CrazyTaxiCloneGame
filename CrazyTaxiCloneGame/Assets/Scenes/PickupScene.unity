@@ -1421,7 +1421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &828567528
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1659,6 +1659,51 @@ WheelCollider:
     type: 3}
   m_PrefabInstance: {fileID: 79956664}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1248149305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1248149307}
+  - component: {fileID: 1248149306}
+  m_Layer: 0
+  m_Name: MoneyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1248149306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248149305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea24dfac126aee349821e43c6c36d4e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyMade: 0
+--- !u!4 &1248149307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248149305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5422976, y: 1.0564891, z: -2.2602124}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &1333949004 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 4778667460485885543, guid: 66f97e68ed002b74f8e181d1c3108e14,
@@ -1842,7 +1887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1466499576
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2066,7 +2111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1632260468
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2232,7 +2277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1735856478
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2638,3 +2683,4 @@ SceneRoots:
   - {fileID: 1466499579}
   - {fileID: 1632260471}
   - {fileID: 1735856481}
+  - {fileID: 1248149307}
