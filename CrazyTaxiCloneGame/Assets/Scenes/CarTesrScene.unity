@@ -310,16 +310,20 @@ MonoBehaviour:
   fleft: 0
   bleft: 0
   steerangle: 0
-  movespeed: 500
   turnspeed: 265.33
-  localmove: {x: 0, y: 0, z: 0}
+  localmove: {x: 0.000041007996, y: -0.025737286, z: 32.872902}
   fx: 0
-  fy: 0
+  fy: 0.14484152
   driveInput: 0
-  accelMultiplier: 10
-  isGrounded: 0
-  lastHitNormal: {x: 0, y: 0, z: 0}
+  accelMultiplier: 4000
+  isGrounded: 1
+  lastHitNormal: {x: 0, y: 1, z: 2.220446e-17}
   maxSpeed: 500
+  movespeed: 500
+  airProbeLength: 1
+  airAssistStart: 4
+  airAssistForce: 9000
+  airAssistDamping: 0.25
 --- !u!1 &236583870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,21 +1297,25 @@ MonoBehaviour:
   springStiffness: 50000
   damperStiffness: 4000
   wheelRadius: 0.25
-  fright: 0
-  Bright: 1
+  fright: 1
+  Bright: 0
   fleft: 0
   bleft: 0
   steerangle: 0
-  movespeed: 500
   turnspeed: 265.33
-  localmove: {x: 0, y: 0, z: 0}
+  localmove: {x: 0.000041007996, y: -0.025737286, z: 32.872902}
   fx: 0
-  fy: 0
+  fy: 0.14484152
   driveInput: 0
-  accelMultiplier: 10
-  isGrounded: 0
-  lastHitNormal: {x: 0, y: 0, z: 0}
+  accelMultiplier: 4000
+  isGrounded: 1
+  lastHitNormal: {x: 0, y: 1, z: 2.220446e-17}
   maxSpeed: 500
+  movespeed: 500
+  airProbeLength: 1
+  airAssistStart: 4
+  airAssistForce: 9000
+  airAssistDamping: 0.25
 --- !u!4 &1523702390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2860618795689733743, guid: 66f97e68ed002b74f8e181d1c3108e14,
@@ -1369,21 +1377,25 @@ MonoBehaviour:
   springStiffness: 50000
   damperStiffness: 4000
   wheelRadius: 0.25
-  fright: 0
+  fright: 1
   Bright: 0
-  fleft: 1
+  fleft: 0
   bleft: 0
   steerangle: 0
-  movespeed: 500
   turnspeed: 265.33
-  localmove: {x: 0, y: 0, z: 0}
+  localmove: {x: 0.000041007996, y: -0.025737286, z: 32.872902}
   fx: 0
-  fy: 0
+  fy: 0.14484152
   driveInput: 0
-  accelMultiplier: 10
-  isGrounded: 0
-  lastHitNormal: {x: 0, y: 0, z: 0}
+  accelMultiplier: 4000
+  isGrounded: 1
+  lastHitNormal: {x: 0, y: 1, z: 2.220446e-17}
   maxSpeed: 500
+  movespeed: 500
+  airProbeLength: 1
+  airAssistStart: 4
+  airAssistForce: 9000
+  airAssistDamping: 0.25
 --- !u!146 &1662492784 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 7782403653391444172, guid: 66f97e68ed002b74f8e181d1c3108e14,
@@ -1439,21 +1451,25 @@ MonoBehaviour:
   springStiffness: 50000
   damperStiffness: 4000
   wheelRadius: 0.25
-  fright: 0
+  fright: 1
   Bright: 0
   fleft: 0
-  bleft: 1
+  bleft: 0
   steerangle: 0
-  movespeed: 500
   turnspeed: 265.33
-  localmove: {x: 0, y: 0, z: 0}
+  localmove: {x: 0.000041007996, y: -0.025737286, z: 32.872902}
   fx: 0
-  fy: 0
+  fy: 0.14484152
   driveInput: 0
-  accelMultiplier: 10
-  isGrounded: 0
-  lastHitNormal: {x: 0, y: 0, z: 0}
+  accelMultiplier: 4000
+  isGrounded: 1
+  lastHitNormal: {x: 0, y: 1, z: 2.220446e-17}
   maxSpeed: 500
+  movespeed: 500
+  airProbeLength: 1
+  airAssistStart: 4
+  airAssistForce: 9000
+  airAssistDamping: 0.25
 --- !u!146 &1709265776 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 4778667460485885543, guid: 66f97e68ed002b74f8e181d1c3108e14,
