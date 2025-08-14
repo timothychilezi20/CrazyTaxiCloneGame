@@ -32,6 +32,7 @@ public class WheelRaycast : MonoBehaviour
     public bool bleft;
     public float steerangle;
     private float wheelangle;
+    public float movespeed;
     [SerializeField] private float turnspeed;
 
     [Header("Move Forces")]
@@ -85,7 +86,7 @@ public class WheelRaycast : MonoBehaviour
             // Driving and lateral forces
             if (fleft || fright)
             {
-                fx = driveInput *  accelMultiplier *springForce; // Drive only on front wheels
+                fx = movespeed *  accelMultiplier ; // Drive only on front wheels
             }
             else
             {

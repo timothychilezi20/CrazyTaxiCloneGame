@@ -282,7 +282,7 @@ Transform:
   m_GameObject: {fileID: 215827455}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8497041, y: 0.65, z: 1.3073394}
+  m_LocalPosition: {x: 0.8497041, y: 0.65, z: 1.772}
   m_LocalScale: {x: 0.59171593, y: 1, z: 0.45871562}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -310,15 +310,16 @@ MonoBehaviour:
   fleft: 0
   bleft: 0
   steerangle: 0
-  turnspeed: 5
+  movespeed: 500
+  turnspeed: 265.33
   localmove: {x: 0, y: 0, z: 0}
   fx: 0
   fy: 0
   driveInput: 0
-  accelMultiplier: 3
+  accelMultiplier: 10
   isGrounded: 0
   lastHitNormal: {x: 0, y: 0, z: 0}
-  maxSpeed: 50
+  maxSpeed: 500
 --- !u!1 &236583870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,7 +1232,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.69, y: 1, z: 2.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2019019090}
@@ -1269,7 +1270,7 @@ Transform:
   m_GameObject: {fileID: 1342156263}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8497041, y: 0.65, z: -1.6055046}
+  m_LocalPosition: {x: 0.8497041, y: 0.65, z: -2.18}
   m_LocalScale: {x: 0.59171593, y: 1, z: 0.45871562}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1297,15 +1298,16 @@ MonoBehaviour:
   fleft: 0
   bleft: 0
   steerangle: 0
-  turnspeed: 5
+  movespeed: 500
+  turnspeed: 265.33
   localmove: {x: 0, y: 0, z: 0}
   fx: 0
   fy: 0
   driveInput: 0
-  accelMultiplier: 3
+  accelMultiplier: 10
   isGrounded: 0
   lastHitNormal: {x: 0, y: 0, z: 0}
-  maxSpeed: 50
+  maxSpeed: 500
 --- !u!4 &1523702390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2860618795689733743, guid: 66f97e68ed002b74f8e181d1c3108e14,
@@ -1344,7 +1346,7 @@ Transform:
   m_GameObject: {fileID: 1604393348}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8508875, y: 0.65, z: 1.3073394}
+  m_LocalPosition: {x: -0.8508875, y: 0.65, z: 1.772}
   m_LocalScale: {x: 0.59171593, y: 1, z: 0.45871562}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1372,15 +1374,16 @@ MonoBehaviour:
   fleft: 1
   bleft: 0
   steerangle: 0
-  turnspeed: 5
+  movespeed: 500
+  turnspeed: 265.33
   localmove: {x: 0, y: 0, z: 0}
   fx: 0
   fy: 0
   driveInput: 0
-  accelMultiplier: 3
+  accelMultiplier: 10
   isGrounded: 0
   lastHitNormal: {x: 0, y: 0, z: 0}
-  maxSpeed: 50
+  maxSpeed: 500
 --- !u!146 &1662492784 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 7782403653391444172, guid: 66f97e68ed002b74f8e181d1c3108e14,
@@ -1413,7 +1416,7 @@ Transform:
   m_GameObject: {fileID: 1683574071}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8508875, y: 0.65, z: -1.6055046}
+  m_LocalPosition: {x: -0.8508875, y: 0.65, z: -2.18}
   m_LocalScale: {x: 0.59171593, y: 1, z: 0.45871562}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1441,15 +1444,16 @@ MonoBehaviour:
   fleft: 0
   bleft: 1
   steerangle: 0
-  turnspeed: 5
+  movespeed: 500
+  turnspeed: 265.33
   localmove: {x: 0, y: 0, z: 0}
   fx: 0
   fy: 0
   driveInput: 0
-  accelMultiplier: 3
+  accelMultiplier: 10
   isGrounded: 0
   lastHitNormal: {x: 0, y: 0, z: 0}
-  maxSpeed: 50
+  maxSpeed: 500
 --- !u!146 &1709265776 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 4778667460485885543, guid: 66f97e68ed002b74f8e181d1c3108e14,
@@ -1696,7 +1700,7 @@ PrefabInstance:
     - target: {fileID: 3607909790750507677, guid: 66f97e68ed002b74f8e181d1c3108e14,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 3607909790750507677, guid: 66f97e68ed002b74f8e181d1c3108e14,
         type: 3}
@@ -1887,8 +1891,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8407775, y: 0.91924405, z: 4.334074}
-  m_Center: {x: 0.033048376, y: 0.78962743, z: -0.17896682}
+  m_Size: {x: 1.8407775, y: 0.58017236, z: 3.3564258}
+  m_Center: {x: 0.03304839, y: 0.9591633, z: -0.24739504}
 --- !u!114 &2019019096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1911,7 +1915,7 @@ MonoBehaviour:
   Turnradius: 10
   rb: {fileID: 2019019097}
   steerinput: 0
-  turnTorque: 50000
+  turnTorque: 20000
 --- !u!54 &2019019097 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 3402131952232422687, guid: 66f97e68ed002b74f8e181d1c3108e14,

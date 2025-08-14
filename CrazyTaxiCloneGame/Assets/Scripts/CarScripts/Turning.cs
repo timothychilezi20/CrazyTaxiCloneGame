@@ -31,8 +31,11 @@ public class Turning : MonoBehaviour
         if (groundedCount == 0)
         {
             // 1️⃣ Keep car parallel to horizontal plane
-            Quaternion targetRotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * 2f));
+            Quaternion snapRotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+            rb.MoveRotation(snapRotation);
+
+// Stop all mid-air rotation
+            rb.angularVelocity = Vector3.zero;
 
             // 2️⃣ Raycast downward to measure ground distance
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 50f))
