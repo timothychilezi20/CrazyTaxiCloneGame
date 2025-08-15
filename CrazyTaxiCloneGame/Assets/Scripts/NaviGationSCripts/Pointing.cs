@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class Pointing : MonoBehaviour
 {
-    public GameObject goal;
-    Vector3 goalPosition;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public PickupAndDropoff pickAndDrop; 
+  
     void Update()
     {
-       
-        transform.LookAt(goal.transform.position);
+        Transform target = null; 
+
+        if (!pickAndDrop.HasPassenger())
+        {
+            if (pickAndDrop.GetActivePickupZone() != null)
+            {
+                target = pickAndDrop.GetActivePickupZone().transform;
+            }
+        }
+
+        else
+        {
+            if (pickAndDrop.GetActiveDropoffZone() != null)
+            {
+                target = pickAndDrop.GetActiveDropoffZone().transform; 
+            }
+        }
+
+        if (target != null)
+        {
+            transform.LookAt(target.position);
+        }
     }
 }
