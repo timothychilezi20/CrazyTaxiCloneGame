@@ -8,7 +8,7 @@ public class PickupAndDropoff : MonoBehaviour
     public class PickupZoneData
     {
         public GameObject pickupZone;
-        public Passenger passengerScript; // Walking passenger
+        public Passenger passengerScript; 
     }
 
     public List<PickupZoneData> pickupZonesData;
@@ -23,13 +23,18 @@ public class PickupAndDropoff : MonoBehaviour
 
     private int currentPickupIndex = 0;
 
+    public GameObject pointer; 
+
     private void Start()
     {
         foreach (var data in pickupZonesData)
         {
             data.pickupZone.SetActive(false);
+
             if (data.passengerScript != null)
+            {
                 data.passengerScript.gameObject.SetActive(false);
+            }
         }
 
         foreach (var dropoff in dropoffZones)
@@ -42,12 +47,12 @@ public class PickupAndDropoff : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Taxi enters pickup zone
+        
         if (!hasPassenger && activePickupZoneData.pickupZone == other.gameObject)
         {
-            activePickupZoneData.passengerScript.StartFollowing(passengerHoldPoint); // start moving
+            activePickupZoneData.passengerScript.StartFollowing(passengerHoldPoint); 
         }
-        // Taxi enters dropoff zone
+       
         else if (hasPassenger && activeDropoffZone == other.gameObject)
         {
             StartCoroutine(DropoffPassenger());
@@ -56,10 +61,9 @@ public class PickupAndDropoff : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // Taxi leaves pickup zone before passenger reaches it
         if (!hasPassenger && activePickupZoneData.pickupZone == other.gameObject)
         {
-            activePickupZoneData.passengerScript.StopFollowing(); // stop moving
+            activePickupZoneData.passengerScript.StopFollowing();
         }
     }
 
@@ -67,21 +71,34 @@ public class PickupAndDropoff : MonoBehaviour
     {
         if (pickupZonesData.Count == 0) return;
 
-        // Disable previous pickup
+        
         if (activePickupZoneData != null)
         {
             activePickupZoneData.pickupZone.SetActive(false);
+
             if (activePickupZoneData.passengerScript != null)
+            {
                 activePickupZoneData.passengerScript.gameObject.SetActive(false);
+                
+            }
+               
         }
 
         if (currentPickupIndex >= pickupZonesData.Count)
+        {
             currentPickupIndex = 0;
+        }
+           
 
         activePickupZoneData = pickupZonesData[currentPickupIndex];
+
         activePickupZoneData.pickupZone.SetActive(true);
+
         if (activePickupZoneData.passengerScript != null)
+        {
             activePickupZoneData.passengerScript.gameObject.SetActive(true);
+        }
+            
     }
 
     void ActivateRandomDropoffZone()
@@ -116,5 +133,20 @@ public class PickupAndDropoff : MonoBehaviour
 
         currentPickupIndex++;
         ActivateNextPickupZone();
+    }
+
+    public bool HasPassenger()
+    {
+        return hasPassenger;
+    }
+
+    public GameObject GetActivePickupZone()
+    {
+        return activePickupZoneData != null ? activePickupZoneData.pickupZone : null;
+    }
+
+    public GameObject GetActiveDropoffZone()
+    {
+        return activeDropoffZone; 
     }
 }
