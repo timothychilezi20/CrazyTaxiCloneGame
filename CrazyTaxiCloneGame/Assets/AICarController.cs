@@ -7,8 +7,6 @@ public class AICarController : MonoBehaviour
     public float turnSpeed = 5f;
     public float waypointReachDistance = 2f;
 
-    private int currentWaypointIndex = 0; 
-
     void Update()
     {
        // if (waypoints.Length > 0)
