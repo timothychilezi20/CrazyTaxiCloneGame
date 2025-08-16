@@ -1,9 +1,13 @@
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager instance;
+
     public int moneyMade;
+
+    public int currentFare; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
@@ -23,9 +27,16 @@ public class MoneyManager : MonoBehaviour
         UpdateUI();
     }
 
-    public void addMoney(int amount)
+    public void SetFare(int fare)
     {
-        moneyMade += amount;
+        currentFare = fare; 
+        UpdateUI();
+    }
+
+    public void CompleteFare()
+    {
+        moneyMade += currentFare;
+        currentFare = 0;
         UpdateUI();
     }
 
@@ -33,7 +44,7 @@ public class MoneyManager : MonoBehaviour
     {
         if (MoneyUIManager.Instance != null)
         {
-            MoneyUIManager.Instance.UpdateMoneyText(moneyMade);
+            MoneyUIManager.Instance.UpdateMoneyText(moneyMade, currentFare);
         }
         else
         {

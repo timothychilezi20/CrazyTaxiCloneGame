@@ -118,6 +118,11 @@ public class PickupAndDropoff : MonoBehaviour
         hasPassenger = true;
         activePickupZoneData.pickupZone.SetActive(false);
         ActivateRandomDropoffZone();
+
+        int randomFare = Random.Range(50, 200);
+        MoneyManager.instance.SetFare(randomFare);
+
+        TimerScript.Instance.AddTime(5f); 
     }
 
     IEnumerator DropoffPassenger()
@@ -133,6 +138,10 @@ public class PickupAndDropoff : MonoBehaviour
 
         currentPickupIndex++;
         ActivateNextPickupZone();
+
+        MoneyManager.instance.CompleteFare(); 
+
+        TimerScript.Instance.AddTime(10f); 
     }
 
     public bool HasPassenger()
@@ -149,4 +158,5 @@ public class PickupAndDropoff : MonoBehaviour
     {
         return activeDropoffZone; 
     }
+
 }
