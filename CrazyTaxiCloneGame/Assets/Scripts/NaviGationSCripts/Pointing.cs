@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Pointing : MonoBehaviour
 {
-    public PickupAndDropoff pickAndDrop; 
-  
+    public PickupAndDropoff pickAndDrop;
+
     void Update()
     {
-        Transform target = null; 
+        Transform target = null;
 
         if (!pickAndDrop.HasPassenger())
         {
@@ -17,18 +17,19 @@ public class Pointing : MonoBehaviour
                 target = pickAndDrop.GetActivePickupZone().transform;
             }
         }
-
         else
         {
             if (pickAndDrop.GetActiveDropoffZone() != null)
             {
-                target = pickAndDrop.GetActiveDropoffZone().transform; 
+                target = pickAndDrop.GetActiveDropoffZone().transform;
             }
         }
 
         if (target != null)
         {
-            transform.LookAt(target.position);
+            Vector3 targetPosition = target.position;
+            targetPosition.y = transform.position.y; 
+            transform.LookAt(targetPosition);
         }
     }
 }
