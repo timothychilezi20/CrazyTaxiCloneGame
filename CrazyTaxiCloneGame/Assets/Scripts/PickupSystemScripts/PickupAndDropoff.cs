@@ -129,7 +129,8 @@ public class PickupAndDropoff : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        Instantiate(passengerPrefab, activeDropoffZone.transform.position, Quaternion.identity);
+       GameObject droppedPassenger = Instantiate(passengerPrefab,activeDropoffZone.transform.position, Quaternion.identity);
+        droppedPassenger.AddComponent<PassengerDropoff>(); 
 
         Destroy(currentPassenger);
         hasPassenger = false;
@@ -139,7 +140,7 @@ public class PickupAndDropoff : MonoBehaviour
         currentPickupIndex++;
         ActivateNextPickupZone();
 
-        MoneyManager.instance.CompleteFare(); 
+        MoneyManager.instance.CompleteFare();
 
         TimerScript.Instance.AddTime(10f); 
     }
