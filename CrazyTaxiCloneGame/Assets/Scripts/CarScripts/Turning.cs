@@ -12,7 +12,8 @@ public class Turning : MonoBehaviour
     [SerializeField] float Turnradius;
     [SerializeField] float antiRollStrength = 5000f;
     [SerializeField] Rigidbody rb;
-
+    [SerializeField] float stability = 0.3f;
+    [SerializeField] float stabilitySpeed = 2f;
     [Header("Temp test input")] [SerializeField]
     float steerinput;
 
@@ -25,7 +26,35 @@ public class Turning : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         CalculateWheelbaseAndRearTrack();
+       
     }
+    void StabilizeInAir()
+    {
+        // Check if ALL wheels are airborne
+        bool anyGrounded = false;
+
+        foreach (WheelRaycast w in wheels)
+        {
+            if (w.grounded)
+            {
+                anyGrounded = true;
+                break;
+            }
+        }
+
+        if (anyGrounded)
+            return; // Don't apply stabilization if we're on the ground
+
+        // Apply auto-upright torque
+        Vector3 predictedUp = Quaternion.AngleAxis(
+            rb.angularVelocity.magnitude * Mathf.Rad2Deg * stability / stabilitySpeed,
+            rb.angularVelocity
+        ) * transform.up;
+
+        Vector3 torqueVector = Vector3.Cross(predictedUp, Vector3.up);
+        rb.AddTorque(torqueVector * stabilitySpeed * stabilitySpeed);
+    }
+
     void CalculateWheelbaseAndRearTrack()
     {
         Vector3 frontPos = Vector3.zero;
@@ -53,7 +82,7 @@ public class Turning : MonoBehaviour
     {
      
             ApplyRearAntiRoll();
-        
+            StabilizeInAir();
 
     }
 

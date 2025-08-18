@@ -305,7 +305,6 @@ MonoBehaviour:
   springStiffness: 50000
   damperStiffness: 4000
   grounded: 0
-  forwardspeed: 0
   wheelRadius: 0.25
   fright: 1
   Bright: 0
@@ -313,6 +312,13 @@ MonoBehaviour:
   bleft: 0
   steerangle: 0
   turnspeed: 5
+  maxEngineForce: 1000
+  accelerationRate: 2
+  decelerationRate: 3
+  maxSpeed: 50
+  wallBounceFactor: 0.5
+  carCollisionFactor: 0.7
+  roadFrictionFactor: 0.95
   localmove: {x: 0, y: 0, z: 0}
   fx: 0
   fy: 0
@@ -1181,7 +1187,6 @@ MonoBehaviour:
   springStiffness: 50000
   damperStiffness: 4000
   grounded: 0
-  forwardspeed: 0
   wheelRadius: 0.25
   fright: 0
   Bright: 1
@@ -1189,6 +1194,13 @@ MonoBehaviour:
   bleft: 0
   steerangle: 0
   turnspeed: 5
+  maxEngineForce: 1000
+  accelerationRate: 2
+  decelerationRate: 3
+  maxSpeed: 50
+  wallBounceFactor: 0.5
+  carCollisionFactor: 0.7
+  roadFrictionFactor: 0.95
   localmove: {x: 0, y: 0, z: 0}
   fx: 0
   fy: 0
@@ -1253,7 +1265,6 @@ MonoBehaviour:
   springStiffness: 50000
   damperStiffness: 4000
   grounded: 0
-  forwardspeed: 0
   wheelRadius: 0.25
   fright: 0
   Bright: 0
@@ -1261,6 +1272,13 @@ MonoBehaviour:
   bleft: 0
   steerangle: 0
   turnspeed: 5
+  maxEngineForce: 1000
+  accelerationRate: 2
+  decelerationRate: 3
+  maxSpeed: 50
+  wallBounceFactor: 0.5
+  carCollisionFactor: 0.7
+  roadFrictionFactor: 0.95
   localmove: {x: 0, y: 0, z: 0}
   fx: 0
   fy: 0
@@ -1427,7 +1445,6 @@ MonoBehaviour:
   springStiffness: 50000
   damperStiffness: 4000
   grounded: 0
-  forwardspeed: 0
   wheelRadius: 0.25
   fright: 0
   Bright: 0
@@ -1435,6 +1452,13 @@ MonoBehaviour:
   bleft: 1
   steerangle: 0
   turnspeed: 5
+  maxEngineForce: 1000
+  accelerationRate: 2
+  decelerationRate: 3
+  maxSpeed: 50
+  wallBounceFactor: 0.5
+  carCollisionFactor: 0.7
+  roadFrictionFactor: 0.95
   localmove: {x: 0, y: 0, z: 0}
   fx: 0
   fy: 0
@@ -1789,6 +1813,8 @@ MonoBehaviour:
   Turnradius: 5
   antiRollStrength: 3000
   rb: {fileID: 0}
+  stability: 84.26
+  stabilitySpeed: 123.48
   steerinput: 0
 --- !u!1 &2053557109
 GameObject:
