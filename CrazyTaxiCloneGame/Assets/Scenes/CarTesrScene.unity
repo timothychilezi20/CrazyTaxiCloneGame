@@ -304,6 +304,8 @@ MonoBehaviour:
   springTravel: 0.2
   springStiffness: 50000
   damperStiffness: 4000
+  grounded: 0
+  forwardspeed: 0
   wheelRadius: 0.25
   fright: 1
   Bright: 0
@@ -962,6 +964,8 @@ MonoBehaviour:
   springTravel: 0.2
   springStiffness: 50000
   damperStiffness: 4000
+  grounded: 0
+  forwardspeed: 0
   wheelRadius: 0.25
   fright: 0
   Bright: 1
@@ -1032,6 +1036,8 @@ MonoBehaviour:
   springTravel: 0.2
   springStiffness: 50000
   damperStiffness: 4000
+  grounded: 0
+  forwardspeed: 0
   wheelRadius: 0.25
   fright: 0
   Bright: 0
@@ -1096,6 +1102,8 @@ MonoBehaviour:
   springTravel: 0.2
   springStiffness: 50000
   damperStiffness: 4000
+  grounded: 0
+  forwardspeed: 0
   wheelRadius: 0.25
   fright: 0
   Bright: 0
@@ -1435,8 +1443,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8407775, y: 0.91924405, z: 4.334074}
-  m_Center: {x: 0.033048376, y: 0.78962743, z: -0.17896682}
+  m_Size: {x: 1.8407775, y: 0.91924405, z: 3.4088655}
+  m_Center: {x: 0.03304839, y: 0.78962743, z: -0.19519544}
 --- !u!114 &2019019096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,7 +1462,9 @@ MonoBehaviour:
   - {fileID: 1342156265}
   - {fileID: 1604393350}
   - {fileID: 1683574073}
-  Turnradius: 3
+  Turnradius: 5
+  antiRollStrength: 3000
+  rb: {fileID: 0}
   steerinput: 0
 --- !u!1 &2053557109
 GameObject:

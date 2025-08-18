@@ -13,7 +13,8 @@ public class WheelRaycast : MonoBehaviour
     public float springTravel;
     public float springStiffness;
     public float damperStiffness;
-
+    [HideInInspector] public bool grounded;
+    public float forwardspeed;
     private float minLength;
     private float maxLength;
     private float lastLength;
@@ -58,6 +59,7 @@ public class WheelRaycast : MonoBehaviour
 
     void FixedUpdate() {
         if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, maxLength + wheelRadius)) {
+            grounded = true;
             lastLength = springLength;
 
             springLength = hit.distance - wheelRadius;
@@ -66,14 +68,24 @@ public class WheelRaycast : MonoBehaviour
             springForce = springStiffness * (restLength - springLength);
             damperForce = damperStiffness * springVelocity;
 
-            suspensionForce = (springForce + damperForce) * transform.up;
+            suspensionForce = (springForce + damperForce) * hit.normal;
             localmove =transform.InverseTransformDirection(rb.GetPointVelocity(hit.point));
-            fx=Input.GetAxis("Vertical")*springForce;
-            fy = localmove.x * springForce;
+            fx=Input.GetAxis("Vertical")*  springForce;
+            fy = localmove.x *  springForce;
             rb.AddForceAtPosition(suspensionForce+(fx*transform.forward)+(fy*-transform.right), hit.point);
             
         }
+    else
+    {
+        grounded = false;
+    }
         
     }
+    public float GetSuspensionTravel()
+    {
+        // Returns 0 when fully extended, 1 when fully compressed
+        return 1f - ((springLength - minLength) / (maxLength - minLength));
+    }
+
 }
 

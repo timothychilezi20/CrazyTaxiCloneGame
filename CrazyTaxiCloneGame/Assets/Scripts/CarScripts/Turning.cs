@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,6 +10,8 @@ public class Turning : MonoBehaviour
    float wheelbase;
     float rearTrack;
     [SerializeField] float Turnradius;
+    [SerializeField] float antiRollStrength = 5000f;
+    [SerializeField] Rigidbody rb;
 
     [Header("Temp test input")] [SerializeField]
     float steerinput;
@@ -20,6 +23,7 @@ public class Turning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         CalculateWheelbaseAndRearTrack();
     }
     void CalculateWheelbaseAndRearTrack()
@@ -45,6 +49,13 @@ public class Turning : MonoBehaviour
         Debug.Log("Calculated RearTrack: " + rearTrack);
     }
 
+    private void FixedUpdate()
+    {
+     
+            ApplyRearAntiRoll();
+        
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -81,6 +92,32 @@ public class Turning : MonoBehaviour
             }
         }
     }
+    void ApplyRearAntiRoll()
+    {
+        WheelRaycast rearLeft = null;
+        WheelRaycast rearRight = null;
+
+        foreach (WheelRaycast w in wheels)
+        {
+            if (w.bleft) rearLeft = w;
+            if (w.Bright) rearRight = w;
+        }
+
+        if (rearLeft == null || rearRight == null) return;
+
+        float travelLeft = rearLeft.GetSuspensionTravel();  // 0 to 1
+        float travelRight = rearRight.GetSuspensionTravel();
+
+        float antiRollForce = (travelLeft - travelRight) * antiRollStrength;
+
+        if (rearLeft.grounded)
+            rb.AddForceAtPosition(rearLeft.transform.up * -antiRollForce, rearLeft.transform.position);
+
+        if (rearRight.grounded)
+            rb.AddForceAtPosition(rearRight.transform.up * antiRollForce, rearRight.transform.position);
+    }
+
+
 }
 
     
