@@ -6,8 +6,8 @@ using UnityEngine;
 public class Turning : MonoBehaviour
 {
     [Header("car specs")] public WheelRaycast[] wheels;
-    [SerializeField] float wheelbase;
-    [SerializeField] float rearTrack;
+   float wheelbase;
+    float rearTrack;
     [SerializeField] float Turnradius;
 
     [Header("Temp test input")] [SerializeField]
@@ -20,8 +20,31 @@ public class Turning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        CalculateWheelbaseAndRearTrack();
     }
+    void CalculateWheelbaseAndRearTrack()
+    {
+        Vector3 frontPos = Vector3.zero;
+        Vector3 rearLeftPos = Vector3.zero;
+        Vector3 rearRightPos = Vector3.zero;
+
+        foreach (WheelRaycast w in wheels)
+        {
+            if (w.fleft || w.fright)
+                frontPos = w.transform.localPosition;
+            if (w.bleft)
+                rearLeftPos = w.transform.localPosition;
+            if (w.Bright)
+                rearRightPos = w.transform.localPosition;
+        }
+
+        wheelbase = Mathf.Abs(frontPos.z - rearLeftPos.z); // front to rear
+        rearTrack = Mathf.Abs(rearRightPos.x - rearLeftPos.x); // side to side
+
+        Debug.Log("Calculated Wheelbase: " + wheelbase);
+        Debug.Log("Calculated RearTrack: " + rearTrack);
+    }
+
 
     // Update is called once per frame
     void Update()
