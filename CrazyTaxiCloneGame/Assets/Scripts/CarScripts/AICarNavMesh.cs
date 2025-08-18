@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.Rendering.RenderGraphModule;
 
 public class AICarNavMesh : MonoBehaviour
 {
-    public Transform[] destinations;       
+    public Transform[] waypoints;       
     public float stopDistance = 2f;        
     public float minStopTime = 1f;         
     public float maxStopTime = 3f;
@@ -13,13 +14,14 @@ public class AICarNavMesh : MonoBehaviour
     public float raycastDistance = 5f;
 
     private NavMeshAgent agent;
+    private int currentWaypoint = 0; 
     private bool isStopped = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false; 
-        PickRandomDestination();
+        GoToNextWaypoint();
     }
 
     void Update()
@@ -32,19 +34,15 @@ public class AICarNavMesh : MonoBehaviour
         AlignToGround(); 
     }
 
-    void PickRandomDestination()
+    void GoToNextWaypoint()
     {
-        if (destinations.Length == 0)
+        if (waypoints.Length == 0 || !agent.isOnNavMesh)
         {
             return;
         }
 
-        if (!agent.isOnNavMesh)
-        {
-            return;
-        }
-        int randomIndex = Random.Range(0, destinations.Length);
-        agent.SetDestination(destinations[randomIndex].position);
+        agent.SetDestination(waypoints[currentWaypoint].position);
+        currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
     }
 
     IEnumerator WaitAndGo()
@@ -58,7 +56,7 @@ public class AICarNavMesh : MonoBehaviour
         agent.isStopped = false;
         isStopped = false;
 
-        PickRandomDestination();
+        GoToNextWaypoint();
     }
 
     void OnTriggerEnter(Collider other)
