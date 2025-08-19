@@ -9,10 +9,10 @@ public class WheelRaycast : MonoBehaviour
     private Rigidbody rb;
 
     [Header("Suspension")]
-    public float restLength;
-    public float springTravel;
-    public float springStiffness;
-    public float damperStiffness;
+    public float restLength=0.5f;
+    public float springTravel=0.2f;
+    public float springStiffness=50000f;
+    public float damperStiffness=4000;
     [HideInInspector] public bool grounded;
     private float minLength;
     private float maxLength;
@@ -25,14 +25,14 @@ public class WheelRaycast : MonoBehaviour
     private Vector3 suspensionForce;
 
     [Header("Wheel")]
-    public float wheelRadius;
+    public float wheelRadius=0.25f;
     public bool fright;
     public bool Bright;
     public bool fleft;
     public bool bleft;
     public float steerangle;
     private float wheelangle;
-    [SerializeField] private float turnspeed;
+    [SerializeField] private float turnspeed=5;
 
     [Header("Engine Settings")]
     [SerializeField] private float maxEngineForce = 1000f;   // peak engine force

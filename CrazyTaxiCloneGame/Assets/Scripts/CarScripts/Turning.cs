@@ -9,11 +9,11 @@ public class Turning : MonoBehaviour
     [Header("car specs")] public WheelRaycast[] wheels;
    float wheelbase;
     float rearTrack;
-    [SerializeField] float Turnradius;
-    [SerializeField] float antiRollStrength = 5000f;
+    [SerializeField] float Turnradius=5f;
+    [SerializeField] float antiRollStrength = 3000f;
     [SerializeField] Rigidbody rb;
-    [SerializeField] float stability = 0.3f;
-    [SerializeField] float stabilitySpeed = 2f;
+    [SerializeField] float stability = 84.26f;
+    [SerializeField] float stabilitySpeed = 123.48f;
     [Header("Temp test input")] [SerializeField]
     float steerinput;
 
