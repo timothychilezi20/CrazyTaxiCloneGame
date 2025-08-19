@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +24,8 @@ public class PickupAndDropoff : MonoBehaviour
     private int currentPickupIndex = 0;
 
     public GameObject pointer; 
+
+    public TimerScript timerScript;
 
     private void Start()
     {
@@ -144,6 +146,27 @@ public class PickupAndDropoff : MonoBehaviour
 
         TimerScript.Instance.AddTime(10f); 
     }
+
+    public static int CustomersServed = 0;
+
+    private void DropOffPassenger(GameObject dropoffZone)
+    {
+        if (currentPassenger != null)
+        {
+            Destroy(currentPassenger);
+            currentPassenger = null;
+
+            MoneyManager.instance.CompleteFare();
+
+            timerScript.AddTime(10f);
+
+            CustomersServed++;
+
+            activeDropoffZone = null;
+            activePickupZoneData = null;
+        }
+    }
+
 
     public bool HasPassenger()
     {
